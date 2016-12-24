@@ -5,6 +5,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -21,11 +23,15 @@ public class MainActivity extends AppCompatActivity {
     private WebView webView;
     private LocationManager lmgr;
     private MyListener listener;
+    private UIHandler handler;
+    private String mesg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        handler = new UIHandler();
 
         // 檢查是否取的授權
         if (ContextCompat.checkSelfPermission(this,
@@ -110,10 +116,21 @@ public class MainActivity extends AppCompatActivity {
     public class BradJS {
         @JavascriptInterface
         public void showDialog(String mesg){
-
+            MainActivity.this.mesg = mesg;
+            handler.sendEmptyMessage(0);
         }
     }
 
-
+    private class UIHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    Log.d("brad", mesg);
+                    break;
+            }
+        }
+    }
 
 }
