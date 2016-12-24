@@ -1,6 +1,7 @@
 package tw.org.iii.brad03;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -20,6 +21,8 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
@@ -117,9 +120,10 @@ public class MainActivity extends AppCompatActivity {
 
     public class BradJS {
         @JavascriptInterface
-        public void showDialog(String mesg){
+        public boolean showDialog(String mesg){
             MainActivity.this.mesg = mesg;
             handler.sendEmptyMessage(0);
+            return true;
         }
     }
 
@@ -176,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
     private void showPrompt(){
-
     }
 
 
