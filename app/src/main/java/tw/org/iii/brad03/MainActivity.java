@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.d("brad", "OK");
+                webView.loadUrl("file:///android_asset/" + mesg);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

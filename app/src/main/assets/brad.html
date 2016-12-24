@@ -2,12 +2,13 @@
     function showDialog(){
         return confirm("Delete");
     }
-    function showDialogv2(){
-        var ok = brad.showDialog("Delete");
-        return ok;
+    function showDialogv2(url){
+        brad.showDialog(url);
+        return false;
     }
 
 </script>
 Brad.html
 <hr>
-<a href='brad01.html' onclick="return showDialogv2();">brad01.jsp</a>
+<a href='brad01.html' onclick="return showDialogv2('brad01.html');">brad01.html</a>
+<a href='brad02.html' onclick="return showDialogv2('brad02.html');">brad02.html</a>
