@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -93,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+
+        webView.addJavascriptInterface(new BradJS(), "brad");
+
         webView.loadUrl("file:///android_asset/map.html");
     }
 
@@ -102,5 +106,14 @@ public class MainActivity extends AppCompatActivity {
     public void gotoBrad(View v){
         webView.loadUrl("file:///android_asset/brad.html");
     }
+
+    public class BradJS {
+        @JavascriptInterface
+        public void showDialog(String mesg){
+
+        }
+    }
+
+
 
 }
