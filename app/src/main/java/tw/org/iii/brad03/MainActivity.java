@@ -130,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
             switch (msg.what){
                 case 0:
                     //Log.d("brad", mesg);
-                    showAlert();
+                    //showAlert();
+                    showConfirm();
                     break;
             }
         }
@@ -146,7 +147,33 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
     private void showConfirm(){
+        AlertDialog dialog = null;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Warn");
+        builder.setMessage(mesg);
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("brad", "OK");
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("brad", "Cancel");
+            }
+        });
+        builder.setNeutralButton("later", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("brad", "later");
+            }
+        });
 
+
+        dialog = builder.create();
+        dialog.show();
     }
     private void showPrompt(){
 
