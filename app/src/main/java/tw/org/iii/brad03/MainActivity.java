@@ -73,23 +73,19 @@ public class MainActivity extends AppCompatActivity {
     private class MyListener implements LocationListener {
         @Override
         public void onLocationChanged(Location location) {
-
+            double lat = location.getLatitude();
+            double lng = location.getLongitude();
+            webView.loadUrl("javascript:goto(" + lat + ", " + lng + ")");
         }
 
         @Override
-        public void onStatusChanged(String s, int i, Bundle bundle) {
-
-        }
+        public void onStatusChanged(String s, int i, Bundle bundle) {}
 
         @Override
-        public void onProviderEnabled(String s) {
-
-        }
+        public void onProviderEnabled(String s) {}
 
         @Override
-        public void onProviderDisabled(String s) {
-
-        }
+        public void onProviderDisabled(String s) {}
     }
 
 
