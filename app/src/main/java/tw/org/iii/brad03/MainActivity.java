@@ -2,6 +2,7 @@ package tw.org.iii.brad03;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
+    private LocationManager lmgr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     123);   // 123 => requestCode
+        }else{
+            initLocation();
         }
 
         webView = (WebView)findViewById(R.id.webview);
@@ -42,11 +46,15 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // get a grant
-                Log.d("brad", "got it");
+                initLocation();
             }else{
                 finish();
             }
         }
+    }
+
+    private void initLocation(){
+        lmgr = (LocationManager) getSystemService(LOCATION_SERVICE);
     }
 
     private void initWebView(){
