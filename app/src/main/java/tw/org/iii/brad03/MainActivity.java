@@ -99,5 +99,8 @@ public class MainActivity extends AppCompatActivity {
     public void gotoWhere(View v){
         webView.loadUrl("javascript:goto(24.150947, 120.652709)");
     }
+    public void gotoBrad(View v){
+        webView.loadUrl("file:///android_asset/brad.html");
+    }
 
 }
